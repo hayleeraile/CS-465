@@ -19,9 +19,9 @@ export class AddTrip implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private tripService: TripData
-  ) { }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.addForm = this.formBuilder.group({
       _id: [],
       code: ['', Validators.required],
@@ -33,26 +33,22 @@ export class AddTrip implements OnInit {
       image: ['', Validators.required],
       description: ['', Validators.required],
     })
-}
-
-public onSubmit() {
-  this.submitted = true;
-  if(this.addForm.valid) { 
-    this.tripService.addTrip(this.addForm.value)
-    .subscribe( {
-      next: (data: any) => {
-        console.log(data);
-        this.router.navigate(['']);
-      },
-      error: (error: any) => {
-        console.log('Error: ' + error);
-      }});
-   }
   }
-// get the form short name to access the form fields
+  public onSubmit() {
+    this.submitted = true;
+    if(this.addForm.valid){
+      this.tripService.addTrip(this.addForm.value)
+      .subscribe( {
+        next: (data: any) => {
+          console.log(data);
+          this.router.navigate(['']);
+        },
+        error: (error: any) => {
+          console.log('Error: ' + error);
+        }});
+    }
+  }
+  // get the form short name to access the form fields
   get f() { return this.addForm.controls; }
 }
- 
-    
-  
-
+      
