@@ -35,6 +35,10 @@ export class TripData {
     return this.http.put<Trip>(this.url + '/' + formData.code, formData);
   }
 
+  deleteTrip(tripCode: string) {
+    return this.http.delete(this.url + '/' + tripCode);
+  } 
+
   login(user: User, passwd: string) : Observable<AuthResponse> {
     //console.log('Inside TripData::login');
     return this.handleAuthAPICall('login', user, passwd);

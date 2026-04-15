@@ -1,0 +1,8 @@
+<div class="col-md-4">
+    <h2 class="text-center">Delete Trip</h2>
+    <div *ngIf="trip">
+        <p>Are you sure you want to delete this trip?</p>
+        <button (click)="onDelete()" class="btn btn-info" >Delete</button>
+        <button (click)="onCancel()" class="btn btn-info" >Cancel</button>
+    </div>
+</div>

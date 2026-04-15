@@ -19,13 +19,18 @@ export class TripCard implements OnInit {
     private authentication: Authentication) {}
 
   ngOnInit(): void {
-    
   }
 
   public editTrip(trip: Trip) {
     localStorage.removeItem('tripCode');
     localStorage.setItem('tripCode', trip.code);
     this.router.navigate(['edit-trip']);
+  }
+
+  public deleteTrip(trip: Trip) {
+    localStorage.removeItem('tripCode');
+    localStorage.setItem('tripCode', this.trip.code);
+    this.router.navigate(['delete-trip']);
   }
 
   public isLoggedIn()
