@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
@@ -13,6 +14,9 @@ var mealsRouter = require('./app_server/routes/meals');
 var contactRouter = require('./app_server/routes/contact');
 var aboutRouter = require('./app_server/routes/about');
 var apiRouter = require('./app_api/routes/index');
+var reservationsRouter = require('./app_server/routes/reservations');
+var checkoutRouter = require('./app_server/routes/checkout');
+var loginRouter = require('./app_server/routes/login');
 var passport = require('passport');
 
 var handlebars = require('hbs');
@@ -33,9 +37,15 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(session({
+  secret: 'travlr-key',
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
+
+
 
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -53,6 +63,12 @@ app.use('/meals', mealsRouter);
 app.use('/contact', contactRouter);
 app.use('/about', aboutRouter);
 app.use('/api', apiRouter);
+app.use('/reservations', reservationsRouter);
+app.use('/checkout', checkoutRouter);
+app.use('/login', loginRouter);
+
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

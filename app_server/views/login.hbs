@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login - Travlr Getaways</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<div id="background">
+		<div id="page">
+			{{> header }}
+			<div id="contents">
+				<div class="box">
+					<div>
+						<div class="body">
+							<h1>Login</h1>
+
+							<form method="POST" action="/login">
+								<div class="form-group">
+									<label for="email">Email Address</label>
+									<input type="email" id="email" name="email" placeholder="Enter email address">
+								</div>
+
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" id="password" name="password" placeholder="e.g. 12+ alphanumerics">
+								</div>
+
+								<button type="submit" class="button">Sign In!</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{> footer }}
+	</div>
+</body>
+</html>

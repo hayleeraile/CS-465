@@ -2,9 +2,15 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    {{{body}}}
+    <div id="background">
+      <div id="page">
+        {{> header }}
+        {{{body}}}
+      </div>
+      {{> footer }}
+    </div>
   </body>
 </html>
